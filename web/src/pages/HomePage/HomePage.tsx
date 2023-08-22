@@ -135,6 +135,11 @@ const HomePage = () => {
 
         <section>
           <h2>Set query parameters</h2>
+          <p>
+            Picking an option here always scrolls to the top of the page which
+            is annoying when the content you actually care about is in the{' '}
+            <a href="#current-params">current params</a> section.
+          </p>
           <div className="links-container">
             {['option_one', 'option_two', 'option_three'].map((option) => (
               <Link key={option} to={routes.home({ ...params, test: option })}>
@@ -142,7 +147,7 @@ const HomePage = () => {
               </Link>
             ))}
           </div>
-          <div>
+          <div id="current-params">
             <h4>Current params:</h4>
             <pre>{JSON.stringify(params, null, 2)}</pre>
           </div>
