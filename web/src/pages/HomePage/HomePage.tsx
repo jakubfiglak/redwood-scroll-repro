@@ -1,8 +1,9 @@
-import { Link, routes, useParams } from '@redwoodjs/router'
+import { Link, routes, useLocation, useParams } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const HomePage = () => {
   const params = useParams()
+  const { hash } = useLocation()
 
   return (
     <>
@@ -150,6 +151,24 @@ const HomePage = () => {
           <div id="current-params">
             <h4>Current params:</h4>
             <pre>{JSON.stringify(params, null, 2)}</pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Hash parameters</h2>
+          <div className="links-container">
+            {['hash_one', 'hash_two', 'hash_three'].map((option) => (
+              <Link
+                key={option}
+                to={`${routes.home({ ...params })}#hash=${option}`}
+              >
+                {option}
+              </Link>
+            ))}
+          </div>
+          <div id="current-params">
+            <h4>Current hash params:</h4>
+            <pre>{hash}</pre>
           </div>
         </section>
       </div>
